@@ -47,7 +47,10 @@ function App() {
 
     const apiRequestBody = {
       "model": "gpt-3.5-turbo",
-      "messages": [...apiMessages]
+      "messages": [
+        systemMessage,
+        ...apiMessages
+      ]
     }
 
     const systemMessage = {
@@ -63,7 +66,11 @@ function App() {
         "Content-Type": "application/json"
     },
     body: JSON.stringify(apiRequestBody)
-    })
+    }).then((data) => {
+      return data.json();
+    }).then((data) => {
+      console.log(data);
+    });
   }
 
   async function processMessageToGPT(chatMessages) {
