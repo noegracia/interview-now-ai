@@ -7,11 +7,8 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 import config from "./config"; // Import the config file
 
 function App() {
-  const { user, systemPrompt, GPT_API_KEY } = config; // Destructure the user constant from the config
-  const systemMessage = { //  Explain things like you're talking to a software professional with 5 years of experience.
-    "role": "system", "content": systemPrompt
-  }
-
+  const { user } = config; // Destructure the user constant from the config
+  
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -35,11 +32,11 @@ function App() {
     setTyping(true);
 
     // process message to chatGPT send it over and see the response
-    await processMessageToGPT(newMessages);
+    await processMessageToAPI(newMessages);
 
   };
 
-  async function processMessageToGPT(chatMessages) {
+  async function processMessageToAPI(chatMessages) {
       
     // chatMessages { sender: "user" or "chatGPT", message: "The message content here"}
     // apiMessages { role: "user" or "assistant", content: "The message content here"}
@@ -54,37 +51,31 @@ function App() {
         return { role: role, content: messageObject.message }
     });
 
-    // Get the request body set up with the model we plan to use
-    // and the messages which we formatted above. We add a system message in the front to'
-    // determine how we want chatGPT to act. 
-    const apiRequestBody = {
-      "model": "gpt-3.5-turbo",
-      "messages": [
-        systemMessage,
-        ...apiMessages
-      ]
-    }
 
-    await fetch("http://api.openai.com/v1/chat/completions", 
-    {
+    // Send the request to the server
+    await fetch("http://localhost:3001/", {
       method: "POST",
       headers: {
-        "Authorization": `Bearer ${GPT_API_KEY}`,
         "Content-Type": "application/json"
     },
-    body: JSON.stringify(apiRequestBody)
+    body: JSON.stringify(apiMessages)
     }).then((data) => {
       return data.json();
     }).then((data) => {
+      const openaiMessage = data.openaiResponse;
       console.log(data);
       setMessages(
         [...chatMessages, {
-          message: data.choices[0].message.content,
+          message: openaiMessage,
           sender: "GPT"
         }]
         );
         setTyping(false);
+    }).catch((error) => {
+      console.error("Error fetching data:", error);
+      // Handle errors appropriately
     });
+    
   }
 
   return (
