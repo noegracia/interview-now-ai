@@ -38,31 +38,18 @@ function App() {
 
   async function processMessageToAPI(chatMessages) {
       
-    // chatMessages { sender: "user" or "chatGPT", message: "The message content here"}
-    // apiMessages { role: "user" or "assistant", content: "The message content here"}
-
-      let apiMessages = chatMessages.map((messageObject) => {
-        let role = "";
-        if(messageObject.sender === "GPT") {
-          role="assistant"
-        } else {
-          role="user"
-        }
-        return { role: role, content: messageObject.message }
-    });
-
-
     // Send the request to the server
     await fetch("http://localhost:3001/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
     },
-    body: JSON.stringify(apiMessages)
+    body: JSON.stringify(chatMessages)
     }).then((data) => {
+      console.log(chatMessages);
       return data.json();
     }).then((data) => {
-      const openaiMessage = data.openaiResponse;
+      const openaiMessage = data.openaiResponse.content;
       console.log(data);
       setMessages(
         [...chatMessages, {
