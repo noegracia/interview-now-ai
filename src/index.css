@@ -67,3 +67,77 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+.App {
+  text-align: center;
+  background-color: white; /* set background to white */
+  min-height: 100vh; /* full height */
+  display: flex;
+  flex-direction: column;
+}
+
+.App-header {
+  padding: 20px;
+  background-color: white; /* set background to white */
+}
+
+.Profile-photo {
+  width: 120px; /* or your preferred size */
+  height: 120px; /* maintain aspect ratio */
+  border-radius: 50%; /* circular profile photo */
+  object-fit: cover; /* ensures the image is not distorted */
+  margin: 0 auto; /* center the photo */
+}
+
+.App-header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.Profile-name {
+  font-size: 18px;
+  margin-top: 8px;
+  color: #535C88;
+}
+
+.App-main {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.Chat-section {
+  width: 100%;
+  max-width: 700px; /* adjust to your preference */
+  margin-top: 20px;
+}
+
+.Chat-container {
+  border: none; /* remove border for a seamless look */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05); /* subtle shadow for depth */
+  border-radius: 8px; /* slight rounding of corners for modern feel */
+}
+
+.App-footer {
+  background-color: #f8f8f8; /* Light grey background */
+  padding: 20px; /* Padding around the content */
+  border-top: 1px solid #e7e7e7; /* Solid line at the top of the footer */
+}
+
+.Footer-content {
+  display: flex;
+  justify-content: space-between; /* Space out the links and credit */
+  align-items: center; /* Align items vertically */
+}
+
+.Footer-link {
+  color: #333; /* Dark text for visibility */
+  text-decoration: none; /* No underline on the links */
+  padding: 0 8px; /* Padding on the sides of the links */
+}
+
+.Footer-credit {
+  font-size: 0.8em; /* Smaller text for the credit */
+  margin-top: 8px; /* Space above the credit */
+}

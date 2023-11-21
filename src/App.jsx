@@ -5,6 +5,8 @@ import './App.css'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from "@chatscope/chat-ui-kit-react"
 import config from "./config"; // Import the config file
+import TwitterIcon from '../icons/twitter.svg'; // import your social icons
+import LinkedInIcon from '../icons/linkedin.svg';
 
 function App() {
   const { user } = config; // Destructure the user constant from the config
@@ -12,7 +14,7 @@ function App() {
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([
     {
-      message: "Hello, I am ChatGPT!",
+      message: "Hello, I am Noé Gracia's LLM Agent! You can ask me any question about Noé. I will try my best to answer you!",
       sender: "GPT"
     }
   ])
@@ -67,22 +69,48 @@ function App() {
 
   return (
     <div className='App'>
-      <div style={{position: "relative", height: "800px", width: "700px"}}>
-        <MainContainer>
-          <ChatContainer>
-            <MessageList
-            scrollBehavior='smooth'
-              typingIndicator={typing ? <TypingIndicator content={`${user} is typing`} /> : null}>
-              {messages.map((message, index) => {
-                return <Message key={index} model={message} />
-              })}
-            </MessageList>
-            <MessageInput placeholder="Type message here" onSend={(message) => handleSend(message)} />
-          </ChatContainer>
-        </MainContainer>
-      </div>
+      <header className="App-header">
+        <img src="/noe_photo.png" alt="Profile" className="Profile-photo"/>
+        
+        <div className="Profile-name"><h1>Noé Gracia</h1></div>
+      </header>
+      <main className="App-main">
+        <section className="Chat-section">
+          {/* Your chatbot code here */}
+          <div style={{position: "relative", height: "800px", width: "700px"}}>
+            <MainContainer>
+              <ChatContainer>
+                <MessageList scrollBehavior='smooth' typingIndicator={typing ? <TypingIndicator content={`${user} is typing`} /> : null}>
+                  {messages.map((message, index) => {
+                    return <Message key={index} model={message} />
+                  })}
+                </MessageList>
+                <MessageInput placeholder="Type message here" onSend={(message) => handleSend(message)} />
+              </ChatContainer>
+            </MainContainer>
+          </div>
+        </section>
+      </main>
+      <footer className="App-footer">
+        <div className="Footer-socials">
+          <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
+            <img src={TwitterIcon} alt="Twitter" className="Social-icon"/>
+          </a>
+          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+            <img src={LinkedInIcon} alt="LinkedIn" className="Social-icon"/>
+          </a>
+        </div>
+        <div className="Footer-credit">
+          © Noé Gracia 2023
+        </div>
+        <div className="Footer-contact">
+          <span>Say hello.</span>
+          <a href="mailto:your.email@example.com">hello@noegracia.com</a>
+        </div>
+      </footer>
+
     </div>
-  )
+  );
 }
 
 export default App
