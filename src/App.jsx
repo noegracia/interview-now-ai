@@ -39,33 +39,56 @@ function App() {
   };
 
   async function processMessageToAPI(chatMessages) {
-      
-    // Send the request to the server
-    await fetch("http://localhost:3001/", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify(chatMessages)
-    }).then((data) => {
-      console.log(chatMessages);
-      return data.json();
-    }).then((data) => {
+    try {
+      const response = await fetch("http://localhost:3001/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(chatMessages)
+      });
+  
+      if (!response.ok) {
+        if (response.status === 429) {
+          // Rate limit exceeded
+          const errorData = await response.json();
+          console.error("Rate limit error:", errorData.message);
+          // Handle the rate limit message in your chatbot
+          // For example, displaying it in the chat interface
+          setMessages([
+            ...chatMessages,
+            {
+              message: errorData.message, // Show the rate limit error message
+              sender: "System"
+            }
+          ]);
+        } else {
+          // Handle other types of errors
+          console.error("Error fetching data:", response.statusText);
+        }
+        setTyping(false);
+        return;
+      }
+  
+      // If the response is okay, process it
+      const data = await response.json();
       const openaiMessage = data.openaiResponse.content;
       console.log(data);
-      setMessages(
-        [...chatMessages, {
+      setMessages([
+        ...chatMessages,
+        {
           message: openaiMessage,
           sender: "GPT"
-        }]
-        );
-        setTyping(false);
-    }).catch((error) => {
-      console.error("Error fetching data:", error);
-      // Handle errors appropriately
-    });
-    
+        }
+      ]);
+      setTyping(false);
+    } catch (error) {
+      console.error("Error in fetch operation:", error);
+      // Handle network errors or other issues related to the fetch operation
+      setTyping(false);
+    }
   }
+  
 
   return (
     <div className='App'>

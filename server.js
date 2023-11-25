@@ -3,6 +3,7 @@ import bodyParser from "body-parser";
 import cors from "cors";
 
 import OpenAI from "openai";
+import rateLimitMiddleware from "./rateLimiter.js"; // Import the rate limiter
 import config from "./src/config.js"; // Import the config file
 
 const { user, systemPrompt, GPT_API_KEY, model } = config;
@@ -15,6 +16,7 @@ const openai = new OpenAI({
 
 
 const app = express();
+app.use(rateLimitMiddleware); // Apply the rate limiter to all routes
 const port = 3001;
 
 app.use(bodyParser.json());
