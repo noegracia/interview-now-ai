@@ -7,7 +7,7 @@ import TwitterIcon from '../icons/twitter.svg'; // import your social icons
 import LinkedInIcon from '../icons/linkedin.svg';
 
 function App() {
-  const { user } = config; // Destructure the user constant from the config
+  const { user, api_server } = config; // Destructure the user constant from the config
   
   const [typing, setTyping] = useState(false);
   const [messages, setMessages] = useState([
@@ -38,7 +38,7 @@ function App() {
 
   async function processMessageToAPI(chatMessages) {
     try {
-      const response = await fetch("http://localhost:3001/", {
+      const response = await fetch(api_server, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -117,7 +117,7 @@ function App() {
           <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
             <img src={TwitterIcon} alt="Twitter" className="Social-icon"/>
           </a>
-          <a href="https://linkedin.com/in/yourusername" target="_blank" rel="noopener noreferrer">
+          <a href="https://linkedin.com/in/noegracia" target="_blank" rel="noopener noreferrer">
             <img src={LinkedInIcon} alt="LinkedIn" className="Social-icon"/>
           </a>
         </div>
