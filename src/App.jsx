@@ -5,6 +5,7 @@ import { MainContainer, ChatContainer, MessageList, Message, MessageInput, Typin
 import config from "./config"; // Import the config file
 import GithubIcon from '../icons/github.svg'; // import your social icons
 import LinkedInIcon from '../icons/linkedin.svg';
+import Photo_profile from '../images/noe_photo.png';
 
 function App() {
   const { user, api_server } = config; // Destructure the user constant from the config
@@ -91,7 +92,7 @@ function App() {
   return (
     <div className='App'>
       <header className="App-header">
-        <img src={"images/noe_photo.png"} alt="Profile" className="Profile-photo"/>
+        <img src={Photo_profile} alt="Profile" className="Profile-photo"/>
         
         <div className="Profile-name"><h1>Noé Gracia</h1></div>
         <div className="Socials">
