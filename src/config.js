@@ -1,6 +1,6 @@
 const config = {
     user: "Noé Gracia AI Agent",
-    api_server: "http://localhost:3001/"
+    api_server: "16.171.161.82:3001/" //aws
   };
   
   export default config;

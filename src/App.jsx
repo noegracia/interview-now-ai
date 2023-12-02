@@ -3,7 +3,7 @@ import './App.css'
 import '@chatscope/chat-ui-kit-styles/dist/default/styles.min.css';
 import { MainContainer, ChatContainer, MessageList, Message, MessageInput, TypingIndicator } from "@chatscope/chat-ui-kit-react"
 import config from "./config"; // Import the config file
-import TwitterIcon from '../icons/twitter.svg'; // import your social icons
+import GithubIcon from '../icons/github.svg'; // import your social icons
 import LinkedInIcon from '../icons/linkedin.svg';
 
 function App() {
@@ -95,18 +95,18 @@ function App() {
         
         <div className="Profile-name"><h1>Noé Gracia</h1></div>
         <div className="Socials">
-          <a href="https://twitter.com/yourusername" target="_blank" rel="noopener noreferrer">
-            <img src={TwitterIcon} alt="Twitter" className="Social-icon"/>
-          </a>
           <a href="https://linkedin.com/in/noegracia" target="_blank" rel="noopener noreferrer">
             <img src={LinkedInIcon} alt="LinkedIn" className="Social-icon"/>
+          </a>
+          <a href="https://github.com/noegracia/" target="_blank" rel="noopener noreferrer">
+            <img src={GithubIcon} alt="Github" className="Social-icon"/>
           </a>
         </div>
       </header>
       <main className="App-main">
         <section className="Chat-section">
           {/* Your chatbot code here */}
-          <div style={{position: "relative", height: "800px", width: "700px"}}>
+          <div className="Chat-Container-Div">
             <MainContainer>
               <ChatContainer>
                 <MessageList scrollBehavior='smooth' typingIndicator={typing ? <TypingIndicator content={`${user} is typing`} /> : null}>

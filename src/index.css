@@ -138,7 +138,7 @@ button:focus-visible {
 }
 
 .App-header {
-  padding: 20px;
+  padding: 10px;
   background-color: white; /* set background to white */
 }
 
@@ -163,6 +163,9 @@ button:focus-visible {
 
 .Socials {
   margin-top: 8px;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
 }
 
 .App-main {
@@ -174,8 +177,14 @@ button:focus-visible {
 
 .Chat-section {
   width: 100%;
-  max-width: 700px; /* Adjust to your preference */
-  margin-top: -5px;
+  max-width: 700px;
+  margin-bottom: 20px;
+  margin-top: 0px;
+}
+
+.Chat-Container-Div {
+  width: 100%;
+  height: calc(92vh - 210px);
 }
 
 .Chat-container {
