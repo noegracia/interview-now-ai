@@ -91,7 +91,7 @@ function App() {
   return (
     <div className='App'>
       <header className="App-header">
-        <img src={"noe_photo.png"} alt="Profile" className="Profile-photo"/>
+        <img src={"images/noe_photo.png"} alt="Profile" className="Profile-photo"/>
         
         <div className="Profile-name"><h1>Noé Gracia</h1></div>
         <div className="Socials">
