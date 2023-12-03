@@ -39,6 +39,7 @@ function App() {
 
   async function processMessageToAPI(chatMessages) {
     try {
+      console.log(chatMessages);
       const response = await fetch(api_server, {
         method: "POST",
         headers: {
